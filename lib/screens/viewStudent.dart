@@ -28,13 +28,13 @@ class _ViewStudentState extends State<ViewStudent> {
                 child: Text(
                   '\n\nDETAIL BIODATA',
                   style: TextStyle(
-                      fontSize: 30,
+                      fontSize: 50,
                       color: Colors.teal,
                       fontWeight: FontWeight.bold),
                 ),
               ),
           const SizedBox(
-            height: 50,
+            height: 50.0,
           ),
           Row(
             children: [

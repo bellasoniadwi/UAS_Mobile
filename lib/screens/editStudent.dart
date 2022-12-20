@@ -43,10 +43,10 @@ class _EditStudentState extends State<EditStudent> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("UAS Mobile"),
-        backgroundColor: Colors.teal,
-      ),
+      // appBar: AppBar(
+      //   title: const Text("UAS Mobile"),
+      //   backgroundColor: Colors.teal,
+      // ),
       body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.all(16.0),
@@ -55,15 +55,15 @@ class _EditStudentState extends State<EditStudent> {
             children: [
               const Center(
                 child: Text(
-                  'EDIT BIODATA',
+                  '\n\nEDIT BIODATA',
                   style: TextStyle(
-                      fontSize: 30,
+                      fontSize: 50,
                       color: Colors.teal,
                       fontWeight: FontWeight.bold),
                 ),
               ),
               const SizedBox(
-                height: 20.0,
+                height: 50.0,
               ),
               TextField(
                   keyboardType: TextInputType.number,
