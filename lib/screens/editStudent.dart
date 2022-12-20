@@ -14,15 +14,20 @@ class _EditStudentState extends State<EditStudent> {
   var _studentNamaController = TextEditingController();
   var _studentAlamatController = TextEditingController();
   var _studentTeleponController = TextEditingController();
-  var _studentGenderController = TextEditingController();
+  // var _studentGenderController = TextEditingController();
 
   bool _validateNim = false;
   bool _validateNama = false;
   bool _validateAlamat = false;
   bool _validateTelepon = false;
-  bool _validateGender = false;
+  // bool _validateGender = false;
 
   var _studentService = StudentService();
+
+  String? _selectedValue;
+  List<String> listOfValue = ['Laki-laki', 'Perempuan'];
+
+  String? newValue;
 
   @override
   void initState() {
@@ -31,7 +36,7 @@ class _EditStudentState extends State<EditStudent> {
       _studentNamaController.text=widget.student.nama??'';
       _studentAlamatController.text=widget.student.alamat??'';
       _studentTeleponController.text=widget.student.telepon??'';
-      _studentGenderController.text=widget.student.gender??'';
+      // _selectedValue=widget.student.gender??'';
     });
     super.initState();
   }
@@ -110,16 +115,50 @@ class _EditStudentState extends State<EditStudent> {
               const SizedBox(
                 height: 20.0,
               ),
-              TextField(
-                  controller: _studentGenderController,
-                  decoration: InputDecoration(
-                    border: const OutlineInputBorder(),
-                    hintText: 'Masukkan Jenis',
-                    labelText: 'Jenis Kelamin',
-                    errorText: _validateGender
-                        ? 'Isian Jenis Kelamin Tidak Boleh Kosong'
-                        : null,
-                  )),
+              DropdownButtonFormField(
+                decoration: InputDecoration(
+                border: const OutlineInputBorder(),),
+                // value: _selectedValue.toString(),
+                hint: Text(
+                  'Pilih jenis kelamin',
+                ),
+                isExpanded: true,
+                onChanged: (value) {
+                  setState(() {
+                    newValue = value;
+                    print(newValue);
+                  });
+                },
+                value: newValue,
+                // onSaved: (value) {
+                //   setState(() {
+                //     _selectedValue = value;
+                //   });
+                // },
+                // validator: (String? value) {
+                //   if (value == null) {
+                //     return "can't empty";
+                //   } else {
+                //     return null;
+                //   }
+                // },
+                // items: listOfValue.map((String val) {
+                //   return DropdownMenuItem(
+                //     value: val,
+                //     child: Text(
+                //       val,
+                //     ),
+                //   );
+                // }).toList(),
+                items: <String>[
+                      'Laki-laki',
+                      'Perempuan',
+                    ].map((String value) {
+                      return new DropdownMenuItem<String>(
+                        value: value,
+                        child: new Text(value),
+                      );
+                    }).toList()),
               const SizedBox(
                 height: 20.0,
               ),
@@ -144,15 +183,14 @@ class _EditStudentState extends State<EditStudent> {
                           _studentTeleponController.text.isEmpty
                               ? _validateTelepon = true
                               : _validateTelepon = false;
-                          _studentGenderController.text.isEmpty
-                              ? _validateGender = true
-                              : _validateGender = false;
+                          // _studentGenderController.text.isEmpty
+                          //     ? _validateGender = true
+                          //     : _validateGender = false;
                         });
                         if (_validateNim == false &&
                             _validateNama == false &&
                             _validateAlamat == false &&
-                            _validateTelepon == false &&
-                            _validateGender == false) {
+                            _validateTelepon == false) {
                           // print("Good Data Can Save");
                           var _student = Student();
                           _student.id=widget.student.id;
@@ -160,7 +198,7 @@ class _EditStudentState extends State<EditStudent> {
                           _student.nama = _studentNamaController.text;
                           _student.alamat = _studentAlamatController.text;
                           _student.telepon = _studentTeleponController.text;
-                          _student.gender = _studentGenderController.text;
+                          _student.gender = _selectedValue.toString();
 
                           var result=await _studentService.UpdateStudent(_student);
                           Navigator.pop(context,result);
@@ -180,7 +218,7 @@ class _EditStudentState extends State<EditStudent> {
                         _studentNamaController.text = '';
                         _studentAlamatController.text = '';
                         _studentTeleponController.text = '';
-                        _studentGenderController.text = '';
+                        // _studentGenderController.text = '';
                       },
                       child: const Text('Clear Biodata'))
                 ],
