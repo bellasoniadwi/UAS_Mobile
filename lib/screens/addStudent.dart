@@ -27,6 +27,10 @@ class _AddStudent extends State<AddStudent> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("UAS Mobile"),
+        backgroundColor: Colors.teal,
+      ),
       body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.all(16.0),
@@ -46,6 +50,7 @@ class _AddStudent extends State<AddStudent> {
                 height: 20.0,
               ),
               TextField(
+                keyboardType: TextInputType.number,
                   controller: _studentNimController,
                   decoration: InputDecoration(
                     border: const OutlineInputBorder(),
@@ -83,6 +88,7 @@ class _AddStudent extends State<AddStudent> {
                 height: 20.0,
               ),
               TextField(
+                keyboardType: TextInputType.number,
                   controller: _studentTeleponController,
                   decoration: InputDecoration(
                     border: const OutlineInputBorder(),

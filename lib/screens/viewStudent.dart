@@ -14,30 +14,36 @@ class _ViewStudentState extends State<ViewStudent> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
+      appBar: AppBar(
+        title: const Text("UAS Mobile"),
+        backgroundColor: Colors.teal,
+      ),
+      body: Container(
       padding: EdgeInsets.all(16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            "Detail Biodata",
-            style: TextStyle(
-                fontWeight: FontWeight.w600,
-                color: Colors.blueGrey,
-                fontSize: 20),
-          ),
+          const Center(
+                child: Text(
+                  'DETAIL BIODATA',
+                  style: TextStyle(
+                      fontSize: 30,
+                      color: Colors.teal,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
           const SizedBox(
             height: 20,
           ),
           Row(
             children: [
-              const Text('NIM',
+              const Text('NIM        :',
                   style: TextStyle(
                       color: Colors.teal,
                       fontSize: 16,
                       fontWeight: FontWeight.w600)),
               Padding(
-                padding: const EdgeInsets.only(left: 30),
+                padding: const EdgeInsets.only(left: 20),
                 child: Text(widget.student.nim ?? '',
                     style: TextStyle(fontSize: 16)),
               ),
@@ -48,13 +54,13 @@ class _ViewStudentState extends State<ViewStudent> {
           ),
           Row(
             children: [
-              const Text('Nama',
+              const Text('Nama     :',
                   style: TextStyle(
                       color: Colors.teal,
                       fontSize: 16,
                       fontWeight: FontWeight.w600)),
               Padding(
-                padding: const EdgeInsets.only(left: 25),
+                padding: const EdgeInsets.only(left: 20),
                 child: Text(widget.student.nama ?? '',
                     style: TextStyle(fontSize: 16)),
               ),
@@ -65,13 +71,13 @@ class _ViewStudentState extends State<ViewStudent> {
           ),
           Row(
             children: [
-              const Text('Alamat',
+              const Text('Alamat   :',
                   style: TextStyle(
                       color: Colors.teal,
                       fontSize: 16,
                       fontWeight: FontWeight.w600)),
               Padding(
-                padding: const EdgeInsets.only(left: 25),
+                padding: const EdgeInsets.only(left: 20),
                 child: Text(widget.student.alamat ?? '',
                     style: TextStyle(fontSize: 16)),
               ),
@@ -82,13 +88,13 @@ class _ViewStudentState extends State<ViewStudent> {
           ),
           Row(
             children: [
-              const Text('Telepon',
+              const Text('Telepon  :',
                   style: TextStyle(
                       color: Colors.teal,
                       fontSize: 16,
                       fontWeight: FontWeight.w600)),
               Padding(
-                padding: const EdgeInsets.only(left: 25),
+                padding: const EdgeInsets.only(left: 20),
                 child: Text(widget.student.telepon ?? '',
                     style: TextStyle(fontSize: 16)),
               ),
@@ -99,13 +105,13 @@ class _ViewStudentState extends State<ViewStudent> {
           ),
           Row(
             children: [
-              const Text('Jenis Kelamin',
+              const Text('Gender   :',
                   style: TextStyle(
                       color: Colors.teal,
                       fontSize: 16,
                       fontWeight: FontWeight.w600)),
               Padding(
-                padding: const EdgeInsets.only(left: 25),
+                padding: const EdgeInsets.only(left: 20),
                 child: Text(widget.student.gender ?? '',
                     style: TextStyle(fontSize: 16)),
               ),

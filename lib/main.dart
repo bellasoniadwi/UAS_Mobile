@@ -40,7 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         body: TabBarView(
           children: [
-            Container(child: AddStudent(),),
+            Container(child: Main(),),
             Container(child: ListData(),)
           ],
         ),
@@ -48,6 +48,44 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
+class Main extends StatefulWidget {
+  const Main({Key? key}) : super(key: key);
+
+  @override
+  State<Main> createState() => _Main();
+}
+
+class _Main extends State<Main> {
+  _showSuccessSnackBar(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(child: Text("Klik tombol '+' untuk menambahkan biodata baru")),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const AddStudent()))
+              .then((data) {
+            if (data != null) {
+              _showSuccessSnackBar('User Detail Added Success');
+            }
+          });
+        },
+        child: const Icon(Icons.add),
+        backgroundColor: Colors.teal,
+      ),
+    );
+  }
+}
+
 
 class ListData extends StatefulWidget {
   const ListData({Key? key}) : super(key: key);
@@ -158,11 +196,11 @@ class _ListData extends State<ListData> {
                                   builder: (context) => EditStudent(
                                         student: _studentList[index],
                                       ))).then((data) {
-                            if (data != null) {
-                              getAllStudentDetails();
+                            // if (data != null) {
+                              ListData();
                               _showSuccessSnackBar(
                                   'Biodata Updated Successfully');
-                            }
+                            // }
                           });
                           ;
                         },
