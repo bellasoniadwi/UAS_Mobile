@@ -1,3 +1,4 @@
+import 'package:uas_mobile/main.dart';
 import 'package:uas_mobile/model/Student.dart';
 import 'package:flutter/material.dart';
 
@@ -14,10 +15,10 @@ class _ViewStudentState extends State<ViewStudent> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("UAS Mobile"),
-        backgroundColor: Colors.teal,
-      ),
+      // appBar: AppBar(
+      //   title: const Text("UAS Mobile"),
+      //   backgroundColor: Colors.teal,
+      // ),
       body: Container(
       padding: EdgeInsets.all(16.0),
       child: Column(
@@ -25,7 +26,7 @@ class _ViewStudentState extends State<ViewStudent> {
         children: [
           const Center(
                 child: Text(
-                  'DETAIL BIODATA',
+                  '\n\nDETAIL BIODATA',
                   style: TextStyle(
                       fontSize: 30,
                       color: Colors.teal,
@@ -33,7 +34,7 @@ class _ViewStudentState extends State<ViewStudent> {
                 ),
               ),
           const SizedBox(
-            height: 20,
+            height: 50,
           ),
           Row(
             children: [
@@ -119,6 +120,16 @@ class _ViewStudentState extends State<ViewStudent> {
           ),
         ],
       ),
-    ));
+    ),
+    floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => MyApp()))
+              .then((data) {
+          });
+        },
+        child: const Icon(Icons.arrow_back),
+        backgroundColor: Colors.teal,
+      ),);
   }
 }

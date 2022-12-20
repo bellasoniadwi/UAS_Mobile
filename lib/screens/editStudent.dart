@@ -130,35 +130,36 @@ class _EditStudentState extends State<EditStudent> {
                   });
                 },
                 value: newValue,
-                // onSaved: (value) {
-                //   setState(() {
-                //     _selectedValue = value;
-                //   });
-                // },
-                // validator: (String? value) {
-                //   if (value == null) {
-                //     return "can't empty";
-                //   } else {
-                //     return null;
-                //   }
-                // },
-                // items: listOfValue.map((String val) {
-                //   return DropdownMenuItem(
-                //     value: val,
-                //     child: Text(
-                //       val,
-                //     ),
-                //   );
-                // }).toList(),
-                items: <String>[
-                      'Laki-laki',
-                      'Perempuan',
-                    ].map((String value) {
-                      return new DropdownMenuItem<String>(
-                        value: value,
-                        child: new Text(value),
-                      );
-                    }).toList()),
+                onSaved: (value) {
+                  setState(() {
+                    _selectedValue = value;
+                  });
+                },
+                validator: (String? value) {
+                  if (value == null) {
+                    return "can't empty";
+                  } else {
+                    return null;
+                  }
+                },
+                items: listOfValue.map((String val) {
+                  return DropdownMenuItem(
+                    value: val,
+                    child: Text(
+                      val,
+                    ),
+                  );
+                }).toList(),
+                // items: <String>[
+                //       'Laki-laki',
+                //       'Perempuan',
+                //     ].map((String value) {
+                //       return new DropdownMenuItem<String>(
+                //         value: value,
+                //         child: new Text(value),
+                //       );
+                //     }).toList()
+                    ),
               const SizedBox(
                 height: 20.0,
               ),
