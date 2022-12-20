@@ -1,9 +1,10 @@
 import 'package:uas_mobile/model/Student.dart';
 import 'package:uas_mobile/services/studentService.dart';
 import 'package:flutter/material.dart';
+
 class EditStudent extends StatefulWidget {
   final Student student;
-  const EditStudent({Key? key,required this.student}) : super(key: key);
+  const EditStudent({Key? key, required this.student}) : super(key: key);
 
   @override
   State<EditStudent> createState() => _EditStudentState();
@@ -27,19 +28,18 @@ class _EditStudentState extends State<EditStudent> {
   String? _selectedValue;
   List<String> listOfValue = ['Laki-laki', 'Perempuan'];
 
-  String? newValue;
-
   @override
   void initState() {
     setState(() {
-      _studentNimController.text=widget.student.nim??'';
-      _studentNamaController.text=widget.student.nama??'';
-      _studentAlamatController.text=widget.student.alamat??'';
-      _studentTeleponController.text=widget.student.telepon??'';
+      _studentNimController.text = widget.student.nim ?? '';
+      _studentNamaController.text = widget.student.nama ?? '';
+      _studentAlamatController.text = widget.student.alamat ?? '';
+      _studentTeleponController.text = widget.student.telepon ?? '';
       // _selectedValue=widget.student.gender??'';
     });
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,6 +66,7 @@ class _EditStudentState extends State<EditStudent> {
                 height: 20.0,
               ),
               TextField(
+                  keyboardType: TextInputType.number,
                   controller: _studentNimController,
                   decoration: InputDecoration(
                     border: const OutlineInputBorder(),
@@ -103,6 +104,7 @@ class _EditStudentState extends State<EditStudent> {
                 height: 20.0,
               ),
               TextField(
+                  keyboardType: TextInputType.number,
                   controller: _studentTeleponController,
                   decoration: InputDecoration(
                     border: const OutlineInputBorder(),
@@ -116,20 +118,19 @@ class _EditStudentState extends State<EditStudent> {
                 height: 20.0,
               ),
               DropdownButtonFormField(
-                decoration: InputDecoration(
-                border: const OutlineInputBorder(),),
-                // value: _selectedValue.toString(),
-                hint: Text(
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                ),
+                value: _selectedValue,
+                hint: const Text(
                   'Pilih jenis kelamin',
                 ),
                 isExpanded: true,
                 onChanged: (value) {
                   setState(() {
-                    newValue = value;
-                    print(newValue);
+                    _selectedValue = value;
                   });
                 },
-                value: newValue,
                 onSaved: (value) {
                   setState(() {
                     _selectedValue = value;
@@ -150,16 +151,7 @@ class _EditStudentState extends State<EditStudent> {
                     ),
                   );
                 }).toList(),
-                // items: <String>[
-                //       'Laki-laki',
-                //       'Perempuan',
-                //     ].map((String value) {
-                //       return new DropdownMenuItem<String>(
-                //         value: value,
-                //         child: new Text(value),
-                //       );
-                //     }).toList()
-                    ),
+              ),
               const SizedBox(
                 height: 20.0,
               ),
@@ -194,15 +186,16 @@ class _EditStudentState extends State<EditStudent> {
                             _validateTelepon == false) {
                           // print("Good Data Can Save");
                           var _student = Student();
-                          _student.id=widget.student.id;
+                          _student.id = widget.student.id;
                           _student.nim = _studentNimController.text;
                           _student.nama = _studentNamaController.text;
                           _student.alamat = _studentAlamatController.text;
                           _student.telepon = _studentTeleponController.text;
                           _student.gender = _selectedValue.toString();
 
-                          var result=await _studentService.UpdateStudent(_student);
-                          Navigator.pop(context,result);
+                          var result =
+                              await _studentService.UpdateStudent(_student);
+                          Navigator.pop(context, result);
                         }
                       },
                       child: const Text('Update Biodata')),

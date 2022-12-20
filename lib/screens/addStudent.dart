@@ -123,7 +123,7 @@ class _AddStudent extends State<AddStudent> {
                   });
                 },
                 validator: (String? value) {
-                  if (value == null) {
+                  if (value!.isEmpty) {
                     return "can't empty";
                   } else {
                     return null;
