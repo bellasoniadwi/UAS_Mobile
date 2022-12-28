@@ -13,7 +13,7 @@ class DatabaseConnection {
 
   Future<void> _createDatabase(Database database, int version) async {
     String sql =
-        "CREATE TABLE students (id INTEGER PRIMARY KEY,nim TEXT,nama Text,alamat TEXT, telepon TEXT, gender TEXT);";
+        "CREATE TABLE students (id INTEGER PRIMARY KEY,nim TEXT,nama Text,alamat TEXT, telepon TEXT, gender TEXT, image TEXT);";
     await database.execute(sql);
   }
 }
