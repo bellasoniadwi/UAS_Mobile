@@ -141,6 +141,7 @@ class _ViewStudentState extends State<ViewStudent> {
       //                   File(widget.student.image ?? ''),
 
       //                 ),
+      
       //               )
       //             : Container(),
       //           ),
@@ -149,6 +150,7 @@ class _ViewStudentState extends State<ViewStudent> {
       //     ],
       //   ),
       // ),
+      // resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       body: Column(
         children: [
@@ -240,10 +242,10 @@ class _ViewStudentState extends State<ViewStudent> {
                   left: 130,
                   child: Container(
                       height: 100,
-                      width: 160,
+                      width: 250,
                       padding: EdgeInsets.only(left: 15, bottom: 20, top: 10),
                       child: Column(
-                        
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Row(
                             children: [
@@ -254,9 +256,10 @@ class _ViewStudentState extends State<ViewStudent> {
                                       fontWeight: FontWeight.w600)),
                               Text(widget.student.nim ?? '',
                                   style: TextStyle(fontSize: 16)),
+                            
                             ],
                           ),
-                          
+                           
                           Row(
                             children: [
                               const Text('Nama     : ',
@@ -291,7 +294,8 @@ class _ViewStudentState extends State<ViewStudent> {
                             ],
                           ),
                         ],
-                      )),
+                      )
+                      ),
                 )
               ],
             ),
