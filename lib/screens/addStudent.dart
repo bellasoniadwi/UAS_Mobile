@@ -128,8 +128,8 @@ class _AddStudent extends State<AddStudent> {
                   decoration: InputDecoration(
                     border: const OutlineInputBorder(),
                     hintText: 'Masukkan Nomor Telepon',
-                    labelText: 'Nomor Telepeon',
-                    errorText: _validateAlamat
+                    labelText: 'Nomor Telepon',
+                    errorText: _validateTelepon
                         ? 'Isian Nomor Telepon Tidak Boleh Kosong'
                         : null,
                   )),
