@@ -1,6 +1,11 @@
+import 'dart:io';
+
+import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:uas_mobile/model/Student.dart';
 import 'package:uas_mobile/services/studentService.dart';
 import 'package:flutter/material.dart';
+import 'package:path/path.dart';
 
 class EditStudent extends StatefulWidget {
   final Student student;
@@ -27,6 +32,28 @@ class _EditStudentState extends State<EditStudent> {
 
   String? _selectedValue;
   List<String> listOfValue = ['Laki-laki', 'Perempuan'];
+  String _imagePath = '';
+
+  pickImage() async {
+    final imageFile = await ImagePicker.platform.pickImage(
+      source: ImageSource.camera,
+    );
+
+    if (imageFile == null) {
+      return;
+    }
+
+    final File file = File(imageFile.path);
+
+    final appDir = await getApplicationDocumentsDirectory();
+    final fileName = basename(imageFile.path);
+    final savedImage = await file.copy('${appDir.path}/$fileName');
+
+    setState(() {
+      _imagePath = savedImage.path;
+    });
+  }
+  // using your m
 
   @override
   void initState() {
@@ -35,7 +62,8 @@ class _EditStudentState extends State<EditStudent> {
       _studentNamaController.text = widget.student.nama ?? '';
       _studentAlamatController.text = widget.student.alamat ?? '';
       _studentTeleponController.text = widget.student.telepon ?? '';
-      // _selectedValue=widget.student.gender??'';
+      _selectedValue = widget.student.gender ?? '';
+      _imagePath = widget.student.image ?? '';
     });
     super.initState();
   }
@@ -58,7 +86,7 @@ class _EditStudentState extends State<EditStudent> {
                   '\n\nEDIT BIODATA',
                   style: TextStyle(
                       fontSize: 50,
-                      color: Colors.teal,
+                      color: Color(0xFFe80054),
                       fontWeight: FontWeight.bold),
                 ),
               ),
@@ -128,12 +156,12 @@ class _EditStudentState extends State<EditStudent> {
                 isExpanded: true,
                 onChanged: (value) {
                   setState(() {
-                    _selectedValue = value;
+                    _selectedValue = value as String?;
                   });
                 },
                 onSaved: (value) {
                   setState(() {
-                    _selectedValue = value;
+                    _selectedValue = value as String?;
                   });
                 },
                 validator: (String? value) {
@@ -155,6 +183,8 @@ class _EditStudentState extends State<EditStudent> {
               const SizedBox(
                 height: 20.0,
               ),
+              TextButton(onPressed: pickImage, child: Text('Pilih Foto')),
+              _imagePath != '' ? Image.file(File(_imagePath)) : Container(),
               Row(
                 children: [
                   TextButton(
@@ -191,6 +221,7 @@ class _EditStudentState extends State<EditStudent> {
                           _student.nama = _studentNamaController.text;
                           _student.alamat = _studentAlamatController.text;
                           _student.telepon = _studentTeleponController.text;
+                          _student.image = _imagePath;
                           _student.gender = _selectedValue.toString();
 
                           var result =

@@ -5,6 +5,7 @@ class Student {
   String? alamat;
   String? telepon;
   String? gender;
+  String? image;
 
   studentMap() {
     var mapping = Map<String, dynamic>();
@@ -14,6 +15,7 @@ class Student {
     mapping['alamat'] = alamat!;
     mapping['telepon'] = telepon!;
     mapping['gender'] = gender!;
+    mapping['image'] = image!;
     return mapping;
   }
 }

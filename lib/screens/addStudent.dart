@@ -1,6 +1,14 @@
+// import 'dart:html';
+
+import 'dart:developer';
+import 'dart:io';
+
+import 'package:path_provider/path_provider.dart';
 import 'package:uas_mobile/model/Student.dart';
 import 'package:uas_mobile/services/studentService.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:path/path.dart';
 
 class AddStudent extends StatefulWidget {
   const AddStudent({Key? key}) : super(key: key);
@@ -25,7 +33,31 @@ class _AddStudent extends State<AddStudent> {
   var _studentService = StudentService();
 
   String? _selectedValue;
+  String _imagePath = '';
   List<String> listOfValue = ['Laki-laki', 'Perempuan'];
+
+  // final File image;
+
+  pickImage() async {
+    final imageFile = await ImagePicker.platform.pickImage(
+      source: ImageSource.camera,
+    );
+
+    if (imageFile == null) {
+      return;
+    }
+
+    final File file = File(imageFile.path);
+
+    final appDir = await getApplicationDocumentsDirectory();
+    final fileName = basename(imageFile.path);
+    final savedImage = await file.copy('${appDir.path}/$fileName');
+
+    setState(() {
+      _imagePath = savedImage.path;
+    });
+  }
+  // using your method of getting an image
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +77,7 @@ class _AddStudent extends State<AddStudent> {
                   '\n\nISI BIODATA',
                   style: TextStyle(
                       fontSize: 50,
-                      color: Colors.teal,
+                      color: Color(0xFFe80054),
                       fontWeight: FontWeight.bold),
                 ),
               ),
@@ -106,7 +138,8 @@ class _AddStudent extends State<AddStudent> {
               ),
               DropdownButtonFormField(
                 decoration: InputDecoration(
-                border: const OutlineInputBorder(),),
+                  border: const OutlineInputBorder(),
+                ),
                 value: _selectedValue,
                 hint: Text(
                   'Pilih jenis kelamin',
@@ -114,12 +147,12 @@ class _AddStudent extends State<AddStudent> {
                 isExpanded: true,
                 onChanged: (value) {
                   setState(() {
-                    _selectedValue = value;
+                    _selectedValue = value as String?;
                   });
                 },
                 onSaved: (value) {
                   setState(() {
-                    _selectedValue = value;
+                    _selectedValue = value as String?;
                   });
                 },
                 validator: (String? value) {
@@ -141,6 +174,8 @@ class _AddStudent extends State<AddStudent> {
               const SizedBox(
                 height: 20.0,
               ),
+              TextButton(onPressed: pickImage, child: Text('Pilih Foto')),
+              _imagePath != '' ? Image.file(File(_imagePath)) : Container(),
               Row(
                 children: [
                   TextButton(
@@ -176,6 +211,7 @@ class _AddStudent extends State<AddStudent> {
                           _student.nama = _studentNamaController.text;
                           _student.alamat = _studentAlamatController.text;
                           _student.telepon = _studentTeleponController.text;
+                          _student.image = _imagePath;
                           _student.gender = _selectedValue.toString();
                           var result =
                               await _studentService.SaveStudent(_student);
@@ -196,6 +232,7 @@ class _AddStudent extends State<AddStudent> {
                         _studentNamaController.text = '';
                         _studentAlamatController.text = '';
                         _studentTeleponController.text = '';
+                        _imagePath = '';
                         // _studentGenderController.text = '';
                       },
                       child: const Text('Clear Biodata'))
