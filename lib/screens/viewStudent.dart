@@ -198,7 +198,7 @@ class _ViewStudentState extends State<ViewStudent> {
                     left: 20,
                     child: Material(
                       child: Container(
-                        height: 250.0,
+                        height: 150.0,
                         width: MediaQuery.of(context).size.width * 0.9,
                         decoration: BoxDecoration(
                           color: Colors.white,
@@ -224,8 +224,8 @@ class _ViewStudentState extends State<ViewStudent> {
                       borderRadius: BorderRadius.circular(15.0),
                     ),
                     child: Container(
-                        height: 200,
-                        width: 150,
+                        height: 150,
+                        width: 100,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10.0),
                           image: DecorationImage(
@@ -237,7 +237,7 @@ class _ViewStudentState extends State<ViewStudent> {
                 ),
                 Positioned(
                   top: 45,
-                  left: 180,
+                  left: 130,
                   child: Container(
                       height: 100,
                       width: 160,
@@ -247,7 +247,7 @@ class _ViewStudentState extends State<ViewStudent> {
                         children: [
                           Row(
                             children: [
-                              const Text('NIM   : ',
+                              const Text('NIM        : ',
                                   style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 16,
@@ -259,7 +259,7 @@ class _ViewStudentState extends State<ViewStudent> {
                           
                           Row(
                             children: [
-                              const Text('Nama  : ',
+                              const Text('Nama     : ',
                                   style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 16,
