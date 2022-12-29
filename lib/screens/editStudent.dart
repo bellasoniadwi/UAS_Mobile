@@ -183,7 +183,20 @@ class _EditStudentState extends State<EditStudent> {
               const SizedBox(
                 height: 20.0,
               ),
-              TextButton(onPressed: pickImage, child: Text('Pilih Foto')),
+              // TextButton(onPressed: pickImage, child: Text('Pilih Foto')),
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Color(0xFFe80054),
+                    minimumSize: const Size.fromHeight(50),
+                  ),
+                  onPressed: pickImage,
+                  child: Text(
+                    'Ambil Foto',
+                    style: TextStyle(color: Colors.white),
+                  )),
+              const SizedBox(
+                height: 20.0,
+              ),
               _imagePath != '' ? Image.file(File(_imagePath)) : Container(),
               Row(
                 children: [
