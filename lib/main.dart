@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 // import 'package:uas_mobile/home.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
@@ -200,7 +202,10 @@ class _ListData extends State<ListData> {
                                 student: _studentList[index],
                               )));
                 },
-                leading: const Icon(Icons.person),
+                leading: CircleAvatar(
+                  backgroundImage: FileImage(
+                    File(_studentList[index].image ?? ''),
+                  ),),
                 title: Text(_studentList[index].nim ?? ''),
                 subtitle: Text(_studentList[index].nama ?? ''),
                 trailing: Row(
