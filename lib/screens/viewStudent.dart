@@ -145,6 +145,22 @@ class _ViewStudentState extends State<ViewStudent> {
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            const Text('Telepon  : ',
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600)),
+                            Expanded(
+                              child: Text(widget.student.telepon ?? '',
+                                  style: TextStyle(fontSize: 16)),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
                             const Text('Gender   : ',
                                 style: TextStyle(
                                     color: Colors.black,
